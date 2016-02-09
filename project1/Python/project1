@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 import numpy as np
 import scipy.linalg as la
 import matplotlib.pyplot as plt
@@ -7,7 +7,7 @@ import datetime as dt
 # Gaussian Elimination
 fig1 = plt.figure()
 fig2 = plt.figure()
-testcase = (100, 1000000)
+testcase = (10, 100, 1000)
 print 'Gaussian Elimination'
 for m in testcase:
 
@@ -46,17 +46,22 @@ for m in testcase:
     plt.figure(2)
     plt.plot(x,e[0, :])
 
-    print 'Time for Gaussian Elimination: %f',recordTime
+    print 'Time for Gaussian Elimination: %f', recordTime
 
 plt.figure(1)
 plt.title('Calculation results')
 plt.plot(x, Eu[:])
 plt.figure(2)
 plt.title('Relative error')
-#plt.show()
-
+plt.show()
 # Lu Decomposition
-print 'LU Decomposition'
+print 'Simplified LU Decomposition'
+
+
+
+
+
+print 'LU Decomposition using numpy'
 for m in testcase:
     A = np.diag(2*np.ones(m), 0) + np.diag(-1*np.ones(m-1), 1) + np.diag(-1*np.ones(m-1), -1)
 #    print A
@@ -67,7 +72,7 @@ for m in testcase:
     recordTime = dt.datetime.now()
     P, L, U = la.lu(A)
     recordTime = dt.datetime.now()-recordTime
-    print 'Time for Lu Decomposition: ',recordTime,'fdsa'
+    print 'Time for Lu Decomposition: ', recordTime
 #    print P
 #    print L
 #    print U

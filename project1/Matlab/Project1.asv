@@ -65,7 +65,7 @@ fullMatrix = 2*diag(ones(N,1)) -diag(ones(N-1,1),1) -diag(ones(N-1,1),-1);
 % Solve the problem
 tic
 [L,U] = lu(fullMatrix);
-LU_results = f0/L/U;
+LU_results = U\(L\f);
 LU_time(j) = toc;
 
 end
@@ -77,6 +77,6 @@ title('Maximum relative error');
 xlabel('Number of points(log)');
 
 figure
-plot(log10(testCase),log10(MatlabTime),log10(testCase),log10(GaussianTime),log10(testCase),log10(LU_time));
+plot(testCase,MatlabTime,testCase,GaussianTime,testCase,LU_time);
 title('Time used for different method');
 legend('Matlab slash slover','Gaussian o(n) method','Standard LU o(n^3) method')
