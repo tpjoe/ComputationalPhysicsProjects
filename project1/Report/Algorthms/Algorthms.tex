@@ -14,10 +14,38 @@
 
 \section{Introduction}
 \section{Theoretical models and technicalities}
-We do three methods \\
-including
-\subsection{Fortran}	
+\subsection{Mathematical model}	
+To solve ordinary differential equation, Euler method is commonly used to achieve $o(h62)$ accuracy as shown in Eq.1:\\
 
+\begin{align}
+\frac{x_{i+1}+x_{i-1}-2*x_i}{h^2} = f{''}_i,
+\end{align}
+
+where h is the step length, $x(i)$ is the $i^th$ points and $f$ is the function value at the $i^th$ point. \\
+This method can be implemented to solve many ODEs involving first and second order derivatives in the following form numerically:\\
+
+\begin{align}
+\frac{d^2y}{dx^2}+k^2(x)y = f(x),
+\end{align}
+
+where $k^2$ is a real function.\\
+For example, for the Poission's equation under spherical symmetrical field using polar coordinations, the original equation can be simplified as following form:\\
+
+\begin{align}
+\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d\Phi}{dr}\right) = -4\pi \rho(r),
+\end{align}
+
+where $\phi$ is the electrostatic potential, $\rho(r)$ is the local charge distribution and $r$ is the radial distance\\
+If we substitute $\Phi(r)= \phi(r)/r$, we can have \\
+
+\begin{align}
+\frac{d^2\phi}{dr^2}= -4\pi r\rho(r).
+\end{align}
+
+
+
+
+\newpage
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.2\linewidth]{C:/Users/jlliu/Desktop/Picture1}

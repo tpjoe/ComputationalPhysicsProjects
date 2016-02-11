@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.10)  11 FEB 2016 10:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.10)  11 FEB 2016 13:28
 entering extended mode
 **./Algorthms.tex
 (Algorthms.tex
@@ -189,19 +189,38 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) [1
 
 {C:/Users/jlliu/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-<C:/Users/jlliu/Desktop/Picture1.jpg, id=8, 913.9746pt x 499.1448pt>
+Underfull \hbox (badness 10000) in paragraph at lines 18--19
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--26
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--40
+
+ []
+
+[2] <C:/Users/jlliu/Desktop/Picture1.jpg, id=18, 913.9746pt x 499.1448pt>
 File: C:/Users/jlliu/Desktop/Picture1.jpg Graphic file (type jpg)
 
 <use C:/Users/jlliu/Desktop/Picture1.jpg>
 Package pdftex.def Info: C:/Users/jlliu/Desktop/Picture1.jpg used on input line
- 23.
+ 51.
 (pdftex.def)             Requested size: 413.99895pt x 226.09065pt.
 
-Overfull \hbox (68.99895pt too wide) in paragraph at lines 23--24
+Overfull \hbox (68.99895pt too wide) in paragraph at lines 51--52
  [][] 
  []
 
-[2 <C:/Users/jlliu/Desktop/Picture1.jpg>] [3] (Algorthms.aux) ) 
+[3 <C:/Users/jlliu/Desktop/Picture1.jpg>] (Algorthms.aux) ) 
 Here is how much of TeX's memory you used:
  3034 strings out of 493634
  41284 string characters out of 3135239
@@ -209,22 +228,25 @@ Here is how much of TeX's memory you used:
  6423 multiletter control sequences out of 15000+200000
  9191 words of font info for 34 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 27i,8n,40p,243b,981s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/jlliu/
-AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:
-/Users/jlliu/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb><C:/Users/jlliu/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmex10.pfb><C:/Users/jlliu/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/jlliu/AppData/Local/Programs/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/jlliu/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jlliu/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Use
-rs/jlliu/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17
-.pfb><C:/Users/jlliu/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmtt10.pfb>
-Output written on Algorthms.pdf (3 pages, 384224 bytes).
+ 27i,9n,40p,243b,981s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/jlliu/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Use
+rs/jlliu/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx1
+2.pfb><C:/Users/jlliu/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmex10.pfb><C:/Users/jlliu/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmmi10.pfb><C:/Users/jlliu/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/jlliu/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jlliu/AppData
+/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/j
+lliu/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb
+><C:/Users/jlliu/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmr7.pfb><C:/Users/jlliu/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb><C:/Users/jlliu/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/jlliu/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on Algorthms.pdf (3 pages, 416731 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 61 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
