@@ -161,48 +161,10 @@ u[0, i] = (f[i] - e[0, i] * u[0, i+1]) / d[0, i]
     X = la.lu_solve(LU, f)
     \end{lstlisting} 
 \subsubsection{Fortran}
-Fortran (formerly FORTRAN, derived from "Formula Translation") is a general-purpose, imperative programming language that is especially suited to numeric computation and scientific computing. Originally developed by IBM in the 1950s for scientific and engineering applications, Fortran came to dominate this area of programming early on and has been in continuous use for over half a century in computationally intensive areas such as numerical weather prediction, finite element analysis, computational fluid dynamics, computational physics and computational chemistry. It is a popular language for high-performance computing and is used for programs that benchmark and rank the world's fastest supercomputers.
-
-\newpage
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.2\linewidth]{C:/Users/jlliu/Desktop/Picture1}
-	\caption{}
-	\label{fig:Picture1}
-\end{figure}
-
-$\sum_i^k{a+b}$ 
-
-\begin{align*}
-a+b
-\end{align*}
-
-\centering{
-	\begin{tabular}{|l|r|r|}
-		\hline
-		a&b&c\\
-		\hline
-		e&f&g\\
-		\hline
-	\end{tabular}
-} 
+Fortran (formerly FORTRAN, derived from "Formula Translation") is a general-purpose, imperative programming language that is especially suited to numeric computation and scientific computing. Originally developed by IBM in the 1950s for scientific and engineering applications, Fortran came to dominate this area of programming early on and has been in continuous use for over half a century in computationally intensive areas such as numerical weather prediction, finite element analysis, computational fluid dynamics, computational physics and computational chemistry. It is a popular language for high-performance computing and is used for programs that benchmark and rank the world's fastest supercomputers.\\
+In Fortran program, GE, TGE and Lu decomposition methods are implemented in separate subroutines in math.f90 file. The subroutine gaussElim(N, A, B) used standard GE, the \verb|gaussElim_sp|(N, A, B) used TGE method and \verb|LU_|Lapack(N, A, B) used Lapack library for LU decomposition. This three subroutines are called by main function in main.f90 file.
 
 
-\begin{verbatim}
-for i in range(1, 5):
-print i
-else:
-print "The for loop is over"
-\end{verbatim}
-
-
-
-\begin{lstlisting}[frame=single]  
-for i in range(1, 5):
-print i
-else:
-print "The for loop is over"
-\end{lstlisting}
 
 
 \end{document}
