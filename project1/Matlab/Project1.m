@@ -44,10 +44,9 @@ for j = 1:length(testCase)
     end
 
     % Backward Subsitue
-    %w(:) = 1;
-    cal_u(N-2) = f(N-2)/w(N-2)/A(N-2,N-2);
+    cal_u(N-2) = f(N-2)/A(N-2,N-2);
     for i = (size(A,1)-1):-1:1
-        cal_u(i) = (f(i)-cal_u(i+1)*w(i+1)*A(i,i+1))/(A(i,i)*w(i));
+        cal_u(i) = (f(i)-cal_u(i+1)*A(i,i+1))/(A(i,i));
     end
     GaussianTime(j) = toc;
 
