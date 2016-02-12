@@ -141,7 +141,7 @@ end
 [L,U] = lu(fullMatrix);
 LU_results = (f0/L)/U;
   \end{lstlisting}  
-  One thing to be notice is, in Matlab, the efficiency of FOR loop is relatively low comparing with matrix operation.
+  One thing to be notice is, in Matlab, the efficiency of FOR loop is relatively low comparing with matrix operation. To assign value for each element in the matrix, extra floating point calculations are needed.
 \subsubsection{Python}
 Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming. Python’s elegant syntax and dynamic typing, together with its interpreted nature, make it an ideal language for scripting and rapid application development in many areas on most platforms.
 Comparing with Matlab, similar data structure and algorithms are used in Python code. Also numpy package and scipy.linalg module are used for mathematical operations and matplotlib is used for graph plotting. The core code for TGE is shown below:
