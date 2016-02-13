@@ -192,10 +192,50 @@ u[0, i] = (f[i] - e[0, i] * u[0, i+1]) / d[0, i]
     LU = la.lu_factor(A)
     X = la.lu_solve(LU, f)
     \end{lstlisting} 
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
 
+\subsection{General Results}
+
+The primary goal of this project is to obtain numerical solution for one dimensional Poisson's equation. The results as shown in Figure \ref{fig:NumSoln_Matlab} validates that the result for inhomogeneous second-order differential equation can be approximated by transforming to set of linear equations. A reliable approximation ($u$), as compared to exact solution ($u_{exact}$) can be achieved by using steps of more than 100. Detail on accuracy and errors will be discussed in the next section. Solving the matrices either by Gaussian elimination or LU decomposition yielded the same exact results as they should be.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{../figures/NumSoln_Matlab}
+\caption{Exact solution ($u_{exact}$) and estimates $u$ from solving the set of linear equations by using different number of points.}
+\label{fig:NumSoln_Matlab}
+\end{figure}
+
+
+\subsection{Errors in Approximations}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{../figures/Err_Matlab}
+\caption{Relative error by using different no. of points in Gaussian elimination method.}
+\label{fig:Err_Matlab}
+\end{figure}
+
+The error presented in both LU decomposition and Gaussian elimination methods are the same as plotted in Figure \ref{fig:Err_Matlab}. The plot is from Gaussian elimination because LU decomposition of size larger than 10,000 step size consumes excessed amount of memories and cannot be compiled on our computers.
+
+Generally, the error decreases as step size increases. However, there is a limitation to the accuracy and caution should be paid when using this estimation. We found that at certain step size between 200,000 and 1,000,000, the trend reverses. This starts as early as 500,000 (tested, but not shown). The growing errors are most likely stemmed from the rounding error -- as the step sizes got too small. 
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{../figures/Err_Python_200k}
+	\caption{Relative error of different step sizes as a function of x.}
+	\label{fig:Err_Python_200k}
+\end{figure}
+
+To delve deeper in to this issue, a separate plot of the relative errors along x of different step size was generated (Figure \ref{fig:Err_Python_200k}). From this graph, we found that the error from step sizes of 10-10000 are negligible. However, starting as soon as 200,000 points the results begin to fluctuate. Although at this point it still follow the decreasing trend in error shown in Figure \ref{fig:Err_Matlab}, this marks a beginning of instability.
 
 
 
 	\bibliographystyle{plain}
 	\bibliography{Reference}
+	
 \end{document}

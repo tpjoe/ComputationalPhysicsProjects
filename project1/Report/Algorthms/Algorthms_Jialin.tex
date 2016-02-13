@@ -5,15 +5,11 @@
 
 \begin{document}
 \lstset{language=Pascal}          % Set your language (you can change the language for each code-block optionally)	
-\title{Report of ...}
-\author{Jialin Liu}
-\date{\today}
-\maketitle
 
 \newpage
 
-	\title{Project 1}
-	\author{Jialin Liu \\ Tias \\ Thanaphong Phongpreecha}
+	\title{PHY 905 Project 1}
+	\author{Jialin Liu \\ Thanaphong Phongpreecha}
 	\maketitle
 	
 	\newpage
@@ -144,7 +140,7 @@ where L is a lower triangle matrix with all diagonal elements as 1 and U is a up
 
 \subsection{Implement TGE in Codes}
 
-To compare the calculation speed of different methods and efficiency of different programming languages, TGE and LU method are implemented in Matlab and Python to solve the Poisson Equation under Dirichlet boundary conditions on the region of $(0, 1)$ using 10, 100, 1000 and 10000 points.
+To compare the calculation speed of different methods and efficiency of different programming languages, TGE and LU method are implemented in Matlab and Python to solve the Poisson Equation under Dirichlet boundary conditions on the region of $(0, 1)$ using 10, 100, 1000 and 10000 points. All calculations are done in a Core i7-4770@3.40GHz CPU 16.0GB RAM desktop machine.
 \subsubsection{Matlab}
 MATLAB is a high-level language and interactive environment for numerical computation, visualization, and programming. MATLAB can analyze data, develop algorithms, and create models and applications. The language, tools, and built-in math functions can be used to explore multiple approaches and reach a solution faster than with spreadsheets or traditional programming languages, such as C/C++ or Java. Also, MATLAB can be used for a range of applications, including signal processing and communications, image and video processing, control systems, test and measurement, computational finance, and computational biology. More than a million engineers and scientists in industry and academia use MATLAB, the language of technical computing. \\
 Matlab is specifically expertise on matrix operation, the first part of Matlab program simply called the native slash operator to solve Poission equation:\\
@@ -193,9 +189,61 @@ u[0, i] = (f[i] - e[0, i] * u[0, i+1]) / d[0, i]
     X = la.lu_solve(LU, f)
     \end{lstlisting} 
 
+\section{Results and Discussiion}
+\subsection{Unit Test}
+The unit tests are done under Matlab Unit Testing Framework. The TGE solver developed in Matlab code is sealed in a subroutine TGE(N, d, e1, e2, f). Three test cases are used in this unit test: \\
+\begin{enumerate}
+	\item A matrix is a 3 by 3 unity
+	\item A matrix is a 2 by 2 matrix
+	\item 10 points Poisson's Equation
+\end{enumerate}
+By executing RunTest.m, this subroutine passed all three test cases. So this subroutine will be used as standard benchmark to test Python code.
+
+  \begin{lstlisting}[frame=single]  
+>> RunTest
+Running TGETest
+...
+Done TGETest
+__________
 
 
+ans = 
 
-	\bibliographystyle{plain}
-	\bibliography{Reference}
+1x3 TestResult array with properties:
+
+Name
+Passed
+Failed
+Incomplete
+Duration
+
+Totals:
+3 Passed, 0 Failed, 0 Incomplete.
+0.023027 seconds testing time.
+  \end{lstlisting}
+
+\subsection{Running Time Analysis}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{../figures/Time_all_Table}
+\caption{The time used for different methods.}
+\label{fig:Time_all_Table}
+\end{figure}
+
+Figure \ref{fig:Time_all_Table} showed the running time for different methods in Matlab and Python. When we use less than 1000 points, the running time fluctuate a lot. This may due to the influence of data storage structure in the RAM. If a variable is stored in a continuous region, the I/O speed will be faster. And the actual calculation time contribute less in the total time. When we use 10000 points, the TGE method in Python is the fastest method. In the 10000 points test, it only cost 3.9\% of the Lu decomposition method in Python. This is due to the different calculation complexity of the two methods. TGE methos need $8N$ FLOPS but LU method need $N^3$ FLOPS. Similarly, the LU method in Matlab cost almost same time as LU in Python.\\
+However, the TGE in Matlab cost only half of the LU method. This is because the FOR loop, Matrix indexing and value assignment for one element in matrix in Matlab is very slow. From the report of native code analyzer shown in Figure \ref{fig:RunTimeAnalysis}, we can see 24.2\% running time are wasted in line 42 which is doing the value assignment in a matrix.
+The native slash operator in matlab can have as good performance as TGE method. This indicating slash operator can recognize character of a matrix and call proper solver. 
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth]{../figures/RunTimeAnalysis}
+\caption{Report of Matlab Code Analyzer.}
+\label{fig:RunTimeAnalysis}
+\end{figure}
+
+\section{Conclusion}
+In this work, we developed a numerical solver for Poisson\'s equation using TGE method and reduce the calculation complexity from $o(N^3)$ to $o(8N)$ comparing with standard GE and LU decomposition method. The solver passed all unit tests and can give correct results. The more points used in the calculation, the more accurate result one can get. But when step length is too small, the rounding error and overflow error will happen and decrease the calculation accuracy. 
+
+\bibliographystyle{plain}
+\bibliography{Reference}
 \end{document}
