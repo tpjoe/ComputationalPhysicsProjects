@@ -2,6 +2,8 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
 
 \begin{document}
 \lstset{language=Pascal}          % Set your language (you can change the language for each code-block optionally)	
@@ -10,6 +12,7 @@
 
 	\title{PHY 905 Project 1}
 	\author{Jialin Liu \\ Thanaphong Phongpreecha}
+	\date{February 12, 2016}
 	\maketitle
 	
 	\newpage
@@ -21,7 +24,7 @@
 	\frac{d^{2}y}{dx^2} + k^2(x)y=f(x)
 	\end{equation*}
 	
-	This equation is versatile and is encountered in many fields. For example in engineering, it could be used for modeling mechanical and electrical oscillators with external force. \cite{example}
+	This equation is versatile and is encountered in many fields. For example in engineering, it could be used for modeling mechanical and electrical oscillators with external force. [1]
 	
 	The goal of this project is to use computational calculations, if possible, with dynamic memory allocation to solve the one-dimensional Poisson's equation in electromagnetism with Dirichlet boundary conditions. Detailed derivation can be found in the problem statement, but essentially, the 3D Poisson's equation is simplified to 1D (radial dimension) based on its spherical symmetry. After simplifying to 1D, the differential equation is discretized by rewriting to a set of linear equations of,
 	
@@ -34,9 +37,7 @@
 		\item the contribution of the number of steps $h$ to the accuracy of the estimation as compared to exact results 
 		\item the relative errors of different step length 
 		\item the differences and limits in using either LU decomposition or Gaussian Elimination approach to solve the matrix
-		\item the analytic solutions to this particular problem, and 
-		\item the differences in computing time by MATLAB, Python, and Fortran using the same laptop.
-		
+		\item the differences in computing time by MATLAB and Python using the same laptop.
 	\end{enumerate}
 	
 	
@@ -221,22 +222,61 @@ Totals:
 3 Passed, 0 Failed, 0 Incomplete.
 0.023027 seconds testing time.
   \end{lstlisting}
+  
+  \subsection{General Results}
+  
+  The primary goal of this project is to obtain numerical solution for one dimensional Poisson's equation. The results as shown in Figure \ref{fig:NumSoln_Matlab} validates that the result for inhomogeneous second-order differential equation can be approximated by transforming to set of linear equations. A reliable approximation ($u$), as compared to exact solution ($u_{exact}$) can be achieved by using steps of more than 100. Detail on accuracy and errors will be discussed in the next section. Solving the matrices either by Gaussian elimination or LU decomposition yielded the same exact results as they should be.
+  
+  \begin{figure}[h]
+  	\centering
+  	\includegraphics[width=0.5\linewidth]{../figures/NumSoln_Matlab}
+  	\caption{Exact solution ($u_{exact}$) and estimates $u$ from solving the set of linear equations by using different number of points.}
+  	\label{fig:NumSoln_Matlab}
+  \end{figure}
+  
+  
+  \subsection{Errors in Approximations}
+  
+  \begin{figure}[h]
+  	\centering
+  	\includegraphics[width=0.5\linewidth]{../figures/Err_Matlab}
+  	\caption{Relative error by using different no. of points in Gaussian elimination method.}
+  	\label{fig:Err_Matlab}
+  \end{figure}
+  
+  The error presented in both LU decomposition and Gaussian elimination methods are the same as plotted in Figure \ref{fig:Err_Matlab}. The plot is from Gaussian elimination because LU decomposition of size larger than 10,000 step size consumes excessed amount of memories and cannot be compiled on our computers.
+  
+  Generally, the error decreases as step size increases. However, there is a limitation to the accuracy and caution should be paid when using this estimation. We found that at certain step size between 200,000 and 1,000,000, the trend reverses. This starts as early as 500,000 (tested, but not shown). The growing errors are most likely stemmed from the rounding error -- as the step sizes got too small. 
+  
+  
+  \begin{figure}[h]
+  	\centering
+  	\includegraphics[width=0.5\linewidth]{../figures/Err_Python_200k}
+  	\caption{Relative error of different step sizes as a function of x.}
+  	\label{fig:Err_Python_200k}
+  \end{figure}
+  
+  \begin{figure}[h]
+  	\centering
+  	\includegraphics[width=0.7\linewidth]{../figures/Time_all_Table}
+  	\caption{The time used for different methods.}
+  	\label{fig:Time_all_Table}
+  \end{figure}
+  
+  To delve deeper in to this issue, a separate plot of the relative errors along x of different step size was generated (Figure \ref{fig:Err_Python_200k}). From this graph, we found that the error from step sizes of 10-10000 are negligible. However, starting as soon as 200,000 points the results begin to fluctuate. Although at this point it still follow the decreasing trend in error shown in Figure \ref{fig:Err_Matlab}, this marks a beginning of instability.
+  
 
 \subsection{Running Time Analysis}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=1\linewidth]{../figures/Time_all_Table}
-\caption{The time used for different methods.}
-\label{fig:Time_all_Table}
-\end{figure}
+
 
 Figure \ref{fig:Time_all_Table} showed the running time for different methods in Matlab and Python. When we use less than 1000 points, the running time fluctuate a lot. This may due to the influence of data storage structure in the RAM. If a variable is stored in a continuous region, the I/O speed will be faster. And the actual calculation time contribute less in the total time. When we use 10000 points, the TGE method in Python is the fastest method. In the 10000 points test, it only cost 3.9\% of the Lu decomposition method in Python. This is due to the different calculation complexity of the two methods. TGE methos need $8N$ FLOPS but LU method need $N^3$ FLOPS. Similarly, the LU method in Matlab cost almost same time as LU in Python.\\
 However, the TGE in Matlab cost only half of the LU method. This is because the FOR loop, Matrix indexing and value assignment for one element in matrix in Matlab is very slow. From the report of native code analyzer shown in Figure \ref{fig:RunTimeAnalysis}, we can see 24.2\% running time are wasted in line 42 which is doing the value assignment in a matrix.
 The native slash operator in matlab can have as good performance as TGE method. This indicating slash operator can recognize character of a matrix and call proper solver. 
-\begin{figure}
+
+\begin{figure}[h]
 \centering
-\includegraphics[width=1\linewidth]{../figures/RunTimeAnalysis}
+\includegraphics[width=0.6\linewidth]{../figures/RunTimeAnalysis}
 \caption{Report of Matlab Code Analyzer.}
 \label{fig:RunTimeAnalysis}
 \end{figure}
@@ -244,6 +284,9 @@ The native slash operator in matlab can have as good performance as TGE method. 
 \section{Conclusion}
 In this work, we developed a numerical solver for Poisson\'s equation using TGE method and reduce the calculation complexity from $o(N^3)$ to $o(8N)$ comparing with standard GE and LU decomposition method. The solver passed all unit tests and can give correct results. The more points used in the calculation, the more accurate result one can get. But when step length is too small, the rounding error and overflow error will happen and decrease the calculation accuracy. 
 
-\bibliographystyle{plain}
-\bibliography{Reference}
+\section{Reference}
+
+1. http://www.stewartcalculus.com/data/CALCULUS\%20Concepts\%20and\%20Contexts\/upfiles\/3
+c3-AppsOf2ndOrders\_Stu\.pdf
+
 \end{document}
