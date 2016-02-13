@@ -12,7 +12,39 @@
 
 \newpage
 
-\section{Introduction}
+	\title{Project 1}
+	\author{Jialin Liu \\ Tias \\ Thanaphong Phongpreecha}
+	\maketitle
+	
+	\newpage
+	
+	\section{Introduction}
+	Several differential equations can be written in a form of a non-homogeneous second-derivative differential equation 
+	
+	\begin{equation*}	
+	\frac{d^{2}y}{dx^2} + k^2(x)y=f(x)
+	\end{equation*}
+	
+	This equation is versatile and is encountered in many fields. For example in engineering, it could be used for modeling mechanical and electrical oscillators with external force. \cite{example}
+	
+	The goal of this project is to use computational calculations, if possible, with dynamic memory allocation to solve the one-dimensional Poisson's equation in electromagnetism with Dirichlet boundary conditions. Detailed derivation can be found in the problem statement, but essentially, the 3D Poisson's equation is simplified to 1D (radial dimension) based on its spherical symmetry. After simplifying to 1D, the differential equation is discretized by rewriting to a set of linear equations of,
+	
+	\begin{align*}
+	-\frac{v_{i+1}+v{i-1}-2v_i}{h^2}=f_i && \text{for i = 1,...,n}
+	\end{align*}
+	The equation is solved by transforming to a tridiagonal matrix with $f(x)=100 \cdot e^{-10x}$, where $x \in (0,1) $. These matrices can then be solved using conventional techniques, such as Gaussian Elimination and LU Decomposition \cite{rice2012applied}. The results will be compared with exact solution given as $u(x)=1-(1-e^{10})x-e^{-10x}$. The analyses of results generated in this report include, in an order of,
+	
+	\begin{enumerate}
+		\item the contribution of the number of steps $h$ to the accuracy of the estimation as compared to exact results 
+		\item the relative errors of different step length 
+		\item the differences and limits in using either LU decomposition or Gaussian Elimination approach to solve the matrix
+		\item the analytic solutions to this particular problem, and 
+		\item the differences in computing time by MATLAB, Python, and Fortran using the same laptop.
+		
+	\end{enumerate}
+	
+	
+	
 \section{Theoretical models and technicalities}
 \subsection{Gaussian Elimination for Tridiagonal Matrix}	
 To solve ordinary differential equation, Central Euler method is commonly used to achieve $o(h^2)$ accuracy as shown in Eq.1 for second order derivative:\\
@@ -112,7 +144,7 @@ where L is a lower triangle matrix with all diagonal elements as 1 and U is a up
 
 \subsection{Implement TGE in Codes}
 
-To compare the calculation speed of different methods and efficiency of different programming languages, TGE and LU method are implemented in Matlab, Python and Fortran to solve the Poisson Equation under Dirichlet boundary conditions on the region of $(0, 1)$ using 10, 100, 1000 and 10000 points.
+To compare the calculation speed of different methods and efficiency of different programming languages, TGE and LU method are implemented in Matlab and Python to solve the Poisson Equation under Dirichlet boundary conditions on the region of $(0, 1)$ using 10, 100, 1000 and 10000 points.
 \subsubsection{Matlab}
 MATLAB is a high-level language and interactive environment for numerical computation, visualization, and programming. MATLAB can analyze data, develop algorithms, and create models and applications. The language, tools, and built-in math functions can be used to explore multiple approaches and reach a solution faster than with spreadsheets or traditional programming languages, such as C/C++ or Java. Also, MATLAB can be used for a range of applications, including signal processing and communications, image and video processing, control systems, test and measurement, computational finance, and computational biology. More than a million engineers and scientists in industry and academia use MATLAB, the language of technical computing. \\
 Matlab is specifically expertise on matrix operation, the first part of Matlab program simply called the native slash operator to solve Poission equation:\\
@@ -160,11 +192,10 @@ u[0, i] = (f[i] - e[0, i] * u[0, i+1]) / d[0, i]
     LU = la.lu_factor(A)
     X = la.lu_solve(LU, f)
     \end{lstlisting} 
-\subsubsection{Fortran}
-Fortran (formerly FORTRAN, derived from "Formula Translation") is a general-purpose, imperative programming language that is especially suited to numeric computation and scientific computing. Originally developed by IBM in the 1950s for scientific and engineering applications, Fortran came to dominate this area of programming early on and has been in continuous use for over half a century in computationally intensive areas such as numerical weather prediction, finite element analysis, computational fluid dynamics, computational physics and computational chemistry. It is a popular language for high-performance computing and is used for programs that benchmark and rank the world's fastest supercomputers.\\
-In Fortran program, GE, TGE and Lu decomposition methods are implemented in separate subroutines in math.f90 file. The subroutine gaussElim(N, A, B) used standard GE, the \verb|gaussElim_sp|(N, A, B) used TGE method and \verb|LU_|Lapack(N, A, B) used Lapack library for LU decomposition. This three subroutines are called by main function in main.f90 file.
 
 
 
 
+	\bibliographystyle{plain}
+	\bibliography{Reference}
 \end{document}
