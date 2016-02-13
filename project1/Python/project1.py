@@ -10,7 +10,7 @@ fig1 = plt.figure()
 fig2 = plt.figure()
 
 # Define the test case
-testcase = (10, 10)
+testcase = (10, 100, 1000)
 print 'Gaussian Elimination'
 
 # Loop for different number of points
