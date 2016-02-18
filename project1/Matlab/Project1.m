@@ -2,7 +2,7 @@ clear
 clc
 
 % Define test cases
-testCase = [10, 100, 1000,10000];
+testCase = [11];
 %testCase = 1000:1000:5000;
 error = testCase;
 MatlabTime = testCase;
@@ -14,6 +14,7 @@ figure
 hold on
 title('Solution of Poisson Equation using different number of points');
 x = 0:0.001:1;
+x(1) = [];
 exact_u = 1-(1-exp(-10)).*x-exp(-10*x);
 plot(x,exact_u);
 legendText = 'Exact Solution';
@@ -25,15 +26,17 @@ N = testCase(j)
 w = ones(1,N);
 cal_u = w*9999;
 h = 1/(N-1);
-x = 0:h:1;
-f = h.^2*100*exp(-10*x);
+x = 0:h:1
+x(1) = [];
+f = h.^2*100*exp(-10*x)
 f0 = f;
-A = triDiaMat(N,2,-1,-1);
+A = triDiaMat(N-1,2,-1,-1);
 exact_u = 1-(1-exp(-10)).*x-exp(-10*x);
 %% Matlab slash solver
 tic
 Matlab_cal_u = (f/A);
 MatlabTime(j) = toc;
+plot(x,Matlab_cal_u,'o');
 %% Gaussian
 tic
 % Forward Subsitute
