@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{array, tabularx}
+\usepackage{natbib}
+\newenvironment{conditions*}
+
+
+
+
+\begin{document}
+	
+	\title{Project 1}
+	\author{Jialin Liu \\ Tias \\ Thanaphong Phongpreecha}
+	\maketitle
+	
+	\newpage
+	
+	\section{Introduction}
+		Several differential equations can be written in a form of a non-homogeneous second-derivative differential equation 
+		
+		\begin{equation*}	
+		\frac{d^{2}y}{dx^2} + k^2(x)y=f(x)
+		\end{equation*}
+		
+		This equation is versatile and is encountered in many fields. For example in engineering, it could be used for modeling mechanical and electrical oscillators with external force. \cite{example}
+		
+		The goal of this project is to use computational calculations, if possible, with dynamic memory allocation to solve the one-dimensional Poisson's equation in electromagnetism with Dirichlet boundary conditions. Detailed derivation can be found in the problem statement, but essentially, the 3D Poisson's equation is simplified to 1D (radial dimension) based on its spherical symmetry. After simplifying to 1D, the differential equation is discretized by rewriting to a set of linear equations of,
+		
+		\begin{align*}
+		-\frac{v_{i+1}+v{i-1}-2v_i}{h^2}=f_i && \text{for i = 1,...,n}
+		\end{align*}
+		The equation is solved by transforming to a tridiagonal matrix with $f(x)=100 \cdot e^{-10x}$, where $x \in (0,1) $. These matrices can then be solved using conventional techniques, such as Gaussian Elimination and LU Decomposition \cite{rice2012applied}. The results will be compared with exact solution given as $u(x)=1-(1-e^{10})x-e^{-10x}$. The analyses of results generated in this report include, in an order of,
+		
+		\begin{enumerate}
+		\item the contribution of the number of steps $h$ to the accuracy of the estimation as compared to exact results 
+		\item the relative errors of different step length 
+		\item the differences and limits in using either LU decomposition or Gaussian Elimination approach to solve the matrix
+		\item the analytic solutions to this particular problem, and 
+		\item the differences in computing time by MATLAB, Python, and Fortran using the same laptop.
+		
+		\end{enumerate}
+		
+		
+		
+	    \bibliographystyle{plain}
+	    \bibliography{Reference}
+		
+		
+\end{document}
+
