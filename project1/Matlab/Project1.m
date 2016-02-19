@@ -14,12 +14,40 @@ figure
 hold on
 title('Solution of Poisson Equation using different number of points');
 x = 0:0.001:1;
+x(1) = [];
 exact_u = 1-(1-exp(-10)).*x-exp(-10*x);
 plot(x,exact_u);
 legendText = 'Exact Solution';
 
 % Numerical Solution
 for j = 1:length(testCase)
+<<<<<<< HEAD
+% Define varibles
+N = testCase(j)
+w = ones(1,N);
+cal_u = w*9999;
+h = 1/(N-1);
+x = 0:h:1
+x(1) = [];
+f = h.^2*100*exp(-10*x)
+f0 = f;
+A = triDiaMat(N-1,2,-1,-1);
+exact_u = 1-(1-exp(-10)).*x-exp(-10*x);
+%% Matlab slash solver
+tic
+Matlab_cal_u = (f/A);
+MatlabTime(j) = toc;
+plot(x,Matlab_cal_u,'o');
+%% Gaussian
+tic
+% Forward Subsitute
+for i = 2:size(A,1)
+    ratio = -(A(i,i-1)/A(i-1,i-1));
+    A(i,:) = A(i,:)+A(i-1,:)*ratio;
+    %w(i) = w(i)+w(i-1)*ratio;
+    f(i) = f(i)+f(i-1)*ratio;
+end
+=======
     % Define varibles
     N = testCase(j)
     w = ones(1,N-2);
@@ -42,6 +70,7 @@ for j = 1:length(testCase)
         A(i,:) = A(i,:)+A(i-1,:)*ratio;
         f(i) = f(i)+f(i-1)*ratio;
     end
+>>>>>>> 04d3f1e4033c5a52b68caae1bd9a3e0e9019c58b
 
     % Backward Subsitue
     cal_u(N-2) = f(N-2)/A(N-2,N-2);
