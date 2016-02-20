@@ -2,19 +2,25 @@ import numpy as np
 
 
 def solveTheta(A, p, q):
-    theta = 0.0
     tau = (A[q, q] - A[p, p]) / (2 * A[p, q])
-    if (tau <= 0):
+    if tau <= 0:
         t = 1.0 / (tau + np.sqrt(1.0 + tau * tau))
     else:
         t = -1.0 / (-tau + np.sqrt(1.0 + tau * tau))
-    theta = np.arctan(t)
+    c = 1/np.sqrt(1+t*t)
+    s = c*t
+    # theta = np.arctan(t)
+    theta = [s, c, t]
     return theta
 
 
 def main():
-    
-    return 0
+    A = np.matrix('1 2 0; 2 1 2; 0 2 1')
+    p = 1
+    q = 2
+    theta = solveTheta(A, p, q)
+    print 'theta =', theta
+    return
 
 
 if __name__ == '__main__':
