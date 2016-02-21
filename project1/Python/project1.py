@@ -10,11 +10,7 @@ fig1 = plt.figure()
 fig2 = plt.figure()
 
 # Define the test case
-<<<<<<< HEAD
-testcase = (10, 100, 1000)
-=======
-testcase = (10, 100, 1000, 10000, 200000, 1000000)
->>>>>>> napoleon9000/master
+testcase = (10, 10)
 print 'Gaussian Elimination'
 
 # Loop for different number of points
@@ -64,7 +60,36 @@ plt.legend()
 plt.figure(2)
 plt.title('Relative error')
 
+# Loop for Lu Decomposition
+print 'LU Decomposition'
+for m in testcase:
+    # Generate the full matrix
+    A = np.diag(2*np.ones(m-1), 0) + np.diag(-1*np.ones(m-2), 1) + np.diag(-1*np.ones(m-2), -1)
+    #print A
+    # Variables initialization
+    h = 1 / (float(m+1) - 1)
+    x = (np.arange(m + 1.0-2.0)) / m + h
+    f = (h ** 2.0) * 100.0 * np.exp(-10.0 * x)  # fi
+    # Solve using lib
+    start = time.clock()
+    LU = la.lu_factor(A)
+    X = la.lu_solve(LU, f)
+    finish = time.clock()
+    # Calculate the errors
+    # x = x[range(0, m-1)]                        # Delete 0 in denominator
+    X = X[range(0, m-1)]
+    u_exact = 1-(1-np.exp(-10.0))*x-np.exp(-10.0*x)
+    e2 = np.log10(np.abs(X-u_exact)/u_exact)
+    e2max = max(e2)
+    print 'The maximum error from LU decomposition using', m, 'step is', e2max
+    print 'time for LU is ', finish - start, 's'
 
+    # Plot
+    plt.figure(3)
+    plt.plot(x, X, 'o', label=m)
+    plt.figure(4)
+    plt.plot(x, e2, label=m)
+    plt.legend()
 
 plt.figure(3)
 plt.plot(x, u_exact, label='exact')

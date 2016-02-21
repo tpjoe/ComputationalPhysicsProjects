@@ -34,3 +34,7 @@ temp*
 Trash
 # doconce:
 .*_html_file_collection
+
+# Python
+.xml
+.iml
