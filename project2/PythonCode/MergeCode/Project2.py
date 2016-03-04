@@ -4,9 +4,10 @@ from CalculateB import *
 import numpy as np
 from CalculateEigV import *
 import matplotlib.pyplot as plt
+import time
 
-n = 4
-rho_max = 1
+n = 1000
+rho_max = 5
 err = 1E-14
 A = construct_A(n, rho_max)
 # print(A)
@@ -16,25 +17,24 @@ maxReturn = A_max(A)
 maxValue = maxReturn[2]
 maxPosition = maxReturn[0:2]
 
+start = time.clock()                   # Start counting time
 while np.abs(maxValue) > err:
 
     theta = solveTheta(A, maxPosition[0], maxPosition[1])
     B = CalculateB(A, theta, maxPosition[0], maxPosition[1])
     EigV = CalculateEigV(EigV, theta, maxPosition[0], maxPosition[1])
-    # print 'EigV = ', EigV
     A = B
     maxReturn = A_max(A)
     maxValue = maxReturn[2]
     maxPosition = maxReturn[0:2]
 
-print "B = ",B
-print "Eig vectors = ", EigV
+finish = time.clock()
+EigenValues = sorted(np.diag(B))
 
-Bdiag = np.diag(B)
-plt.plot(EigV)
-plt.show()
+print "Three lowest Eigen values = ", EigenValues[0:3]
+print "The time used for calculation is ", finish-start
 
-Bdiag = np.diag(B)
-E = Bdiag*EigV
+
+
 
 # print EigV
