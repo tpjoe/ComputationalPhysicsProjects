@@ -20,6 +20,7 @@ def construct_A(n, rho_max):
 
     A = np.identity(n)*d + np.diag(e, -1) + np.diag(e, 1)
     A_max = A[n-1, n-1]
+    EigV = np.ones(n)
 
     return A
 
@@ -37,7 +38,9 @@ def A_max(A):
 #    print A_copy
 #    print Max_ij
     return Max
+
 def main():
+    print construct_A(5,1)
     A_max(construct_A(5,1))
 
 if __name__ == "__main__":

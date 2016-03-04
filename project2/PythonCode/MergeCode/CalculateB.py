@@ -14,9 +14,10 @@ def CalculateB(A, theta, p, q):
     for i in range(0, int(sizeA)):
         if (i != p) and (i != q):
             B[i, p] = A[i, p]*c - A[i, q]*s
-            B[p, i] = B[p, i]
+            B[p, i] = B[i, p]
             B[i, q] = A[i, q]*c + A[i, p]*s
             B[q, i] = B[i, q]
+
     return B
 
 

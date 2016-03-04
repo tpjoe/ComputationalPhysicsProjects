@@ -21,11 +21,13 @@ def construct_A(n, rho_max):
     A = np.identity(n)*d + np.diag(e,-1) + np.diag(e,1)
     A_max = A[n-1,n-1]
 
-    return A
+    EigV = np.ones(n)
+
+    return A, EigV
 
 def A_max(n, rho_max):
 
-    A = construct_A(n, rho_max)
+    A, EigV = construct_A(n, rho_max)
     A = np.abs(A)
     Max = np.argmax(A)
     Max_ij = np.unravel_index(Max,(n,n))
