@@ -9,9 +9,9 @@ n = 4
 rho_max = 1
 err = 1E-14
 A = construct_A(n, rho_max)
-print(A)
+# print(A)
 maxValue = 999
-EigV = np.ones(n)
+EigV = np.ones([n, n])
 maxReturn = A_max(A)
 maxValue = maxReturn[2]
 maxPosition = maxReturn[0:2]
@@ -27,7 +27,8 @@ while np.abs(maxValue) > err:
     maxValue = maxReturn[2]
     maxPosition = maxReturn[0:2]
 
-print B
+print "B = ",B
+print "Eig vectors = ", EigV
 
 Bdiag = np.diag(B)
 plt.plot(EigV)
@@ -36,4 +37,4 @@ plt.show()
 Bdiag = np.diag(B)
 E = Bdiag*EigV
 
-print EigV
+# print EigV
