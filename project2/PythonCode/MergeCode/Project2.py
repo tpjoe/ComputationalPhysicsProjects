@@ -12,8 +12,6 @@ A = construct_A(n, rho_max)
 print(A)
 maxValue = 999
 EigV = np.ones(n)
-EigV[0] = 0
-EigV[n-1] = 0
 maxReturn = A_max(A)
 maxValue = maxReturn[2]
 maxPosition = maxReturn[0:2]
